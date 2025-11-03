@@ -13,10 +13,9 @@ const menuItemSchema = new mongoose.Schema({
   image: String,
   category: String,
 
-  // 👇 new field for 3D model URL
-  modelURL: {
+  // ✅ use lowercase modelUrl for consistency
+  modelUrl: {
     type: String,
-    required: false, // optional
   },
 });
 

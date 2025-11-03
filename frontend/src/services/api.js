@@ -1,19 +1,12 @@
-// src/services/api.js
-import axios from "axios";
+const API_URL = "http://localhost:5000/api/menu";
 
-// ✅ For local development (when running on localhost)
-const API = axios.create({
-  baseURL: "http://localhost:5000/api", // your backend base URL
-});
-
-// 🥗 Get all menu items
 export const getMenuItems = async () => {
-  const response = await API.get("/menu");
-  return response.data;
-};
-
-// 🍛 Add a new menu item (optional, for admin use)
-export const addMenuItem = async (newItem) => {
-  const response = await API.post("/menu", newItem);
-  return response.data;
+  try {
+    const response = await fetch(API_URL);
+    if (!response.ok) throw new Error("Failed to fetch menu");
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching menu:", error);
+    return [];
+  }
 };
