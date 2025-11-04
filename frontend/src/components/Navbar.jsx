@@ -55,12 +55,8 @@ const Navbar = () => {
         <Link to="/menu" style={{ color: "#fff", textDecoration: "none" }}>
           Menu
         </Link>
-        <Link to="/order" style={{ color: "#fff", textDecoration: "none" }}>
-          Orders
-        </Link>
-        <Link to="/cart" style={{ color: "#fff", textDecoration: "none" }}>
-          Cart
-        </Link>
+        <Link to="/cart" style={{ color: "orange" }}>🛒 Cart</Link>
+
       </div>
 
       {/* Mobile Menu Styles */}

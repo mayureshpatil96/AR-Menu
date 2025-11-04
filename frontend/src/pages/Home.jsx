@@ -26,6 +26,26 @@ const Home = () => {
     console.log("3D Model Clicked:", modelUrl);
     setSelectedModel(modelUrl);
   };
+  
+const handleAddToCart = async (item) => {
+  try {
+    await axios.post("http://localhost:5000/api/cart", {
+      name: item.name,
+      price: item.price,
+      quantity: 1,
+      image: item.image,
+    });
+    alert(`${item.name} added to cart!`);
+  } catch (err) {
+    console.error("Error adding to cart:", err);
+    alert("Failed to add item to cart");
+  }
+};
+
+  
+  
+  
+
 
   return (
     <div
@@ -49,6 +69,7 @@ const Home = () => {
           style={{
             width: "100%",
             display: "block",
+            height:"400px",
             borderRadius: "0px",
             boxShadow: "0 0 15px rgba(255,255,255,0.1)",
           }}
@@ -93,21 +114,31 @@ const Home = () => {
                 <p style={{ color: "#aaa", fontSize: "0.9rem" }}>{item.description}</p>
                 <p style={{ color: "orange", fontWeight: "bold" }}>₹{item.price}</p>
 
-                <button
-                  onClick={() => handleViewModel(item.modelUrl)}
-                  style={{
-                    background: "orange",
-                    color: "#000",
-                    border: "none",
-                    borderRadius: "5px",
-                    padding: "8px 12px",
-                    cursor: "pointer",
-                    marginTop: "10px",
-                    fontWeight: "600",
-                  }}
-                >
-                  View 3D Model
-                </button>
+                <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginTop: "10px" }}>
+  <button
+    onClick={() => handleViewModel(item.modelUrl)}
+    style={{
+      background: "orange",
+      color: "#000",
+      border: "none",
+      borderRadius: "5px",
+      padding: "8px 12px",
+      cursor: "pointer",
+      fontWeight: "600",
+    }}
+  >
+    View 3D Model
+  </button>
+
+  <button
+  onClick={() => handleAddToCart(item)}
+  className="px-4 py-2 bg-yellow-400 text-black rounded-lg hover:bg-yellow-500"
+>
+  Add to Cart
+</button>
+
+</div>
+
               </div>
             ))
           ) : (

@@ -3,9 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
-import Order from "./pages/Order";
-import Account from "./pages/Account";
-import Login from "./pages/Login";
+import Cart from "./pages/Cart";
+
 
 const App = () => {
   return (
@@ -13,13 +12,11 @@ const App = () => {
       <div className="bg-black min-h-screen text-white">
         <Navbar />
         <div className="pt-16 px-6">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/menu" element={<Menu />} />
-            <Route path="/order" element={<Order />} />
-            <Route path="/account" element={<Account />} />
-            <Route path="/login" element={<Login />} />
-          </Routes>
+        <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/menu" element={<Menu />} />
+        <Route path="/cart" element={<Cart />} /> 
+      </Routes>
         </div>
       </div>
     </Router>
