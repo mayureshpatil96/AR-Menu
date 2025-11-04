@@ -1,26 +1,29 @@
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
+import Order from "./pages/Order";
 import Account from "./pages/Account";
 import Login from "./pages/Login";
-import Order from "./pages/Order";
-import ModelViewer from "./components/ModelViewer"; // ✅ import this
 
-function App() {
+const App = () => {
   return (
     <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/menu" element={<Menu />} />
-        <Route path="/account" element={<Account />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/order" element={<Order />} />
-        <Route path="/model-viewer" element={<ModelViewer />} /> {/* ✅ ADD THIS */}
-      </Routes>
+      <div className="bg-black min-h-screen text-white">
+        <Navbar />
+        <div className="pt-16 px-6">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/menu" element={<Menu />} />
+            <Route path="/order" element={<Order />} />
+            <Route path="/account" element={<Account />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </div>
+      </div>
     </Router>
   );
-}
+};
 
 export default App;
