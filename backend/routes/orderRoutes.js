@@ -3,47 +3,33 @@ import Order from "../models/Order.js";
 
 const router = express.Router();
 
-export default (io) => {
-  // ✅ Place new order
-  router.post("/", async (req, res) => {
-    try {
-      const { customerName, items, total } = req.body;
+router.post("/", async (req, res) => {
+  try {
+    let { items, totalAmount } = req.body;
 
-      const newOrder = new Order({
-        customerName,
-        items,
-        total,
-        status: "Pending",
-      });
-
-      const savedOrder = await newOrder.save();
-
-      // 🔥 Emit new order to all connected clients (admin/cook dashboard)
-      io.emit("new_order", savedOrder);
-
-      res.status(201).json(savedOrder);
-    } catch (err) {
-      console.error("Error placing order:", err);
-      res.status(500).json({ message: "Server Error" });
+    if (!items || items.length === 0) {
+      return res.status(400).json({ message: "No items in order" });
     }
-  });
 
-  // ✅ Get all orders
-  router.get("/", async (req, res) => {
-    const orders = await Order.find().sort({ createdAt: -1 });
-    res.json(orders);
-  });
+    // 🧹 Remove _id fields from cart items
+    const cleanItems = items.map(({ _id, ...rest }) => rest);
 
-  // ✅ Update order status
-  router.put("/:id/status", async (req, res) => {
-    const { status } = req.body;
-    const order = await Order.findByIdAndUpdate(req.params.id, { status }, { new: true });
+    const newOrder = new Order({
+      items: cleanItems,
+      totalAmount,
+      status: "Pending",
+    });
 
-    // Notify clients about status update
-    io.emit("order_updated", order);
+    await newOrder.save();
 
-    res.json(order);
-  });
+    res.status(201).json({
+      message: "Order placed successfully!",
+      order: newOrder,
+    });
+  } catch (error) {
+    console.error("Order placement error:", error);
+    res.status(500).json({ message: "Failed to place order" });
+  }
+});
 
-  return router;
-};
+export default router;

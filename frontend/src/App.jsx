@@ -4,7 +4,8 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
 import Cart from "./pages/Cart";
-
+import AdminDashboard from "./pages/AdminDashboard";
+import OrderStatus from "./pages/OrderStatus";
 
 const App = () => {
   return (
@@ -15,7 +16,9 @@ const App = () => {
         <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/menu" element={<Menu />} />
-        <Route path="/cart" element={<Cart />} /> 
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/admin" element={<AdminDashboard/>}/>
+        <Route path="/order-status" element={<OrderStatus/>}/>
       </Routes>
         </div>
       </div>
