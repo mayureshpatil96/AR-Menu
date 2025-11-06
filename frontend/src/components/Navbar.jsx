@@ -56,6 +56,7 @@ const Navbar = () => {
           Menu
         </Link>
         <Link to="/cart" style={{ color: "orange" }}>🛒 Cart</Link>
+        <Link to="/my-orders" style={{ color: "orange" }}>Orders</Link>
 
       </div>
 

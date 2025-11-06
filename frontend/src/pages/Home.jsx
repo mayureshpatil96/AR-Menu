@@ -26,7 +26,7 @@ const Home = () => {
     console.log("3D Model Clicked:", modelUrl);
     setSelectedModel(modelUrl);
   };
-  
+
 const handleAddToCart = async (item) => {
   try {
     await axios.post("http://localhost:5000/api/cart", {
@@ -42,11 +42,6 @@ const handleAddToCart = async (item) => {
   }
 };
 
-  
-  
-  
-
-
   return (
     <div
       style={{
@@ -59,17 +54,17 @@ const handleAddToCart = async (item) => {
       }}
     >
       {/* ✅ Navbar */}
-      <Navbar />
+      
 
       {/* ✅ Banner Section */}
       <div style={{ textAlign: "center", padding: "40px 0" }}>
         <img
-          src="https://static.vecteezy.com/system/resources/previews/000/539/121/original/vector-vintage-lettering-illustration-of-welcome.jpg"
+          src="https://static.vecteezy.com/system/resources/previews/055/741/940/non_2x/welcome-to-our-restaurant-sign-illustration-free-vector.jpg"
           alt="Restaurant Banner"
           style={{
             width: "100%",
             display: "block",
-            height:"400px",
+            height:"500px",
             borderRadius: "0px",
             boxShadow: "0 0 15px rgba(255,255,255,0.1)",
           }}

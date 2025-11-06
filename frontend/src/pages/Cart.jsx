@@ -44,7 +44,7 @@ const Cart = () => {
   
       if (response.status === 201) {
         alert("✅ Order placed successfully!");
-        navigate("/");
+        navigate("/my-orders");
       }
     } catch (error) {
       console.error("Order placement failed:", error);
@@ -72,7 +72,7 @@ const Cart = () => {
       }}
     >
       {/* ✅ Navbar */}
-      <Navbar />
+      
 
       {/* ✅ Cart Header */}
       <div style={{ textAlign: "center", padding: "40px 20px" }}>

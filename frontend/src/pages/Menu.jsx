@@ -54,7 +54,7 @@ const handleAddToCart = async (item) => {
       }}
     >
       {/* ✅ Navbar */}
-      <Navbar />
+      {/* <Navbar /> */}
 
       {/* ✅ Menu Header */}
       <div style={{ textAlign: "center", padding: "40px 20px" }}>
