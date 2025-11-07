@@ -39,18 +39,22 @@ router.patch("/:id/status", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    let { items, totalAmount } = req.body;
+    let { items, totalAmount, tableNumber } = req.body;
 
     if (!items || items.length === 0) {
       return res.status(400).json({ message: "No items in order" });
     }
+    if (!tableNumber || tableNumber < 1 || tableNumber > 8) {
+      return res.status(400).json({ message: "Invalid table number (1–8)" });
+    }
 
-    // 🧹 Remove _id fields from cart items
+    // 🧹 Remove _id from cart items
     const cleanItems = items.map(({ _id, ...rest }) => rest);
 
     const newOrder = new Order({
       items: cleanItems,
       totalAmount,
+      tableNumber,
       status: "Pending",
     });
 

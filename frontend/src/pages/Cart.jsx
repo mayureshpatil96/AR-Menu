@@ -34,10 +34,18 @@ const Cart = () => {
   // inside your Cart component:
 
   const handlePlaceOrder = async () => {
+    const tableNumber = prompt("🪑 Please enter your table number (1–8):");
+  
+    if (!tableNumber || isNaN(tableNumber) || tableNumber < 1 || tableNumber > 8) {
+      alert("❌ Invalid table number. Please enter a number between 1 and 8.");
+      return;
+    }
+  
     try {
       const orderData = {
         items: cartItems,
         totalAmount,
+        tableNumber: parseInt(tableNumber),
       };
   
       const response = await axios.post("http://localhost:5000/api/orders", orderData);
@@ -51,6 +59,7 @@ const Cart = () => {
       alert("❌ Failed to place order");
     }
   };
+  
   
   
 
